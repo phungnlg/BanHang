@@ -46,7 +46,7 @@ export default class Authentication extends Component {
                     <TouchableOpacity onPress={this.goBackToMain.bind(this)}>
                         <Image source={icBack} style={iconStyle} />
                     </TouchableOpacity>
-                    <Text style={titleStyle}>Wearing a Dress</Text>
+                    <Text style={titleStyle}>THE MUSIC STORE</Text>
                     <Image source={icLogo} style={iconStyle} />
                 </View>
                 {mainJSX}

@@ -5,6 +5,33 @@ import {
 
 const url = 'http://localhost/api/images/product/';
 
+const topProducts = [
+    {
+        key: 1,
+        images: ['http://cdn.theeverygirl.com/wp-content/uploads/2015/11/Adele.jpg', 'https://c.slashgear.com/wp-content/uploads/2017/08/taylorswiftreputationalbumcover_biggest.jpg'],
+        name: 'reputation',
+        price: '9.99'
+    },
+    {
+        key: 2,
+        images: ['https://img.buzzfeed.com/buzzfeed-static/static/2017-08/23/13/asset/buzzfeed-prod-fastlane-03/sub-buzz-17840-1503509074-9.png?downsize=715:*&output-format=auto&output-quality=auto', 'https://c.slashgear.com/wp-content/uploads/2017/08/taylorswiftreputationalbumcover_biggest.jpg'],
+        name: 'reputation',
+        price: '9.99'
+    },
+    {
+        key: 3,
+        images: ['https://www.grammy.com/sites/com/files/styles/news_detail_header/public/gettyimages-888636950.jpg?itok=231Z8FgG', 'https://c.slashgear.com/wp-content/uploads/2017/08/taylorswiftreputationalbumcover_biggest.jpg'],
+        name: 'reputation',
+        price: '9.99'
+    },
+    {
+        key: 4,
+        images: ['https://i.ytimg.com/vi/CevxZvSJLk8/maxresdefault.jpg', 'https://c.slashgear.com/wp-content/uploads/2017/08/taylorswiftreputationalbumcover_biggest.jpg'],
+        name: 'reputation',
+        price: '9.99'
+    }
+]
+
 export default class TopProduct extends Component {
     gotoDetail(product) {
         const { navigator } = this.props;
@@ -16,11 +43,10 @@ export default class TopProduct extends Component {
             body, productContainer, productImage,
             produceName, producePrice 
         } = styles;
-        const { topProducts } = this.props;
         return (
             <View style={container}>
                 <View style={titleContainer}>
-                    <Text style={title}>TOP PRODUCT</Text>
+                    <Text style={title}>BEST SELLING</Text>
                 </View>
                 
                 <ListView 
@@ -29,9 +55,9 @@ export default class TopProduct extends Component {
                     dataSource={new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows(topProducts)}
                     renderRow={product => (
                         <TouchableOpacity style={productContainer} onPress={() => this.gotoDetail(product)}>
-                            <Image source={{ uri: `${url}${product.images[0]}` }} style={productImage} />
+                            <Image source={{ uri: product.images[0] }} style={productImage} />
                             <Text style={produceName}>{product.name.toUpperCase()}</Text>
-                            <Text style={producePrice}>{product.price}$</Text>
+                            <Text style={producePrice}>$ {product.price}</Text>
                         </TouchableOpacity>
                     )}
                     renderSeparator={(sectionId, rowId) => {

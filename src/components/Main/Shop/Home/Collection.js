@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
-import bannerImage from '../../../../media/temp/banner.jpg';
+import bannerImage from '../../../../media/temp/banner2.jpg';
 
 const { width } = Dimensions.get('window');
 
 export default class Collection extends Component {
     gotoListProduct() {
         const { navigator } = this.props;
-        navigator.push({ name: 'LIST_PRODUCT', category: { name: 'SPRING COLLECTION', id: 'COLLECTION' } });
+        navigator.push({ name: 'LIST_PRODUCT', category: { name: 'SPOTLIGHT OF THE WEEK', id: 'COLLECTION' } });
     }
     render() {
         const { wrapper, textStyle, imageStyle } = styles;
         return (
             <View style={wrapper}>
                 <View style={{ height: 50, justifyContent: 'center' }}>
-                    <Text style={textStyle} >SPRING COLLECTION</Text>
+                    <Text style={textStyle} >SPOTLIGHT OF THE WEEK</Text>
                 </View>
                 <TouchableOpacity style={{ flex: 4, justifyContent: 'flex-end' }} onPress={this.gotoListProduct.bind(this)}>
                     <Image source={bannerImage} style={imageStyle} />

@@ -33,12 +33,12 @@ export default class Header extends Component {
                     <TouchableOpacity onPress={this.props.onOpen}>
                         <Image source={icMenu} style={iconStyle} />
                     </TouchableOpacity>
-                    <Text style={titleStyle}>Wearing a Dress</Text>
+                    <Text style={titleStyle}>THE MUSIC STORE</Text>
                     <Image source={icLogo} style={iconStyle} />
                 </View>
                 <TextInput 
                     style={textInput}
-                    placeholder="What do you want to buy?"
+                    placeholder="What song are you looking for?"
                     underlineColorAndroid="transparent"
                     value={this.state.txtSearch}
                     onChangeText={text => this.setState({ txtSearch: text })}
