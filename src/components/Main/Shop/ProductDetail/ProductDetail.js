@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { 
-    View, Text, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity 
+    View, Text, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity, FlatList
 } from 'react-native';
 import global from '../../../global';
 
@@ -8,6 +8,21 @@ const back = require('../../../../media/appIcon/back.png');
 const cart = require('../../../../media/appIcon/cartfull.png');
 
 const url = 'http://localhost/api/images/product/';
+
+const mockData = {
+    images: ['https://img.buzzfeed.com/buzzfeed-static/static/2017-08/23/13/asset/buzzfeed-prod-fastlane-03/sub-buzz-17840-1503509074-9.png?downsize=715:*&output-format=auto&output-quality=auto',
+        'https://img.buzzfeed.com/buzzfeed-static/static/2017-08/23/13/asset/buzzfeed-prod-fastlane-03/sub-buzz-17840-1503509074-9.png?downsize=715:*&output-format=auto&output-quality=auto'],
+    name: 'reputation',
+    price: 9.99,
+    rating: 4.8,
+    release: '23/09/2018',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper, leo nec semper viverra, velit magna ultrices erat, vitae porta magna metus ac urna. Mauris a commodo lacus, nec elementum metus. Suspendisse at sapien augue. Aenean vel dapibus nunc. Duis a nisi pharetra, tincidunt turpis quis, volutpat arcu. Duis semper risus eu eros scelerisque sodales. Duis rutrum hendrerit ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas metus et dignissim dapibus. Curabitur nec interdum urna. Aenean eros felis, gravida in pulvinar sed, condimentum id velit. Mauris iaculis nec justo et iaculis.',
+    songs: [
+        {key: 1, duration: '3:54', name: 'reputation'},
+        {key: 2, duration: '3:54', name: 'Look What You Made Me Do'},
+        {key: 3, duration: '3:54', name: 'Gorgeous'},
+    ]
+}
 
 export default class ProductDetail extends Component {
     goBack() {
@@ -18,6 +33,12 @@ export default class ProductDetail extends Component {
         const { product } = this.props;
         global.addProductToCart(product);
     }
+    renderItem = (item, index) => (
+        <View style={[{backgroundColor: index % 2 === 0 ? 'rgba(52, 176, 137, 0.5)' : 'white'}, styles.songItem]}>
+            <Text>  {item.name}</Text>
+            <Text>{item.duration}  </Text>
+        </View>
+    )
     render() {
         const {
             wrapper, cardStyle, header,
@@ -26,9 +47,9 @@ export default class ProductDetail extends Component {
             textSmoke, textHighlight, textMain, titleContainer,
             descContainer, productImageStyle, descStyle, txtMaterial, txtColor
         } = styles;
-        const { name, price, color, material, description, images } = this.props.product;
+        const { name, price, rating, songs, description, images, release } = mockData;
         return (
-            <View style={wrapper}>
+            <ScrollView style={wrapper}>
                 <View style={cardStyle}>
                     <View style={header}>
                         <TouchableOpacity onPress={this.goBack.bind(this)}>
@@ -40,8 +61,10 @@ export default class ProductDetail extends Component {
                     </View>
                     <View style={imageContainer}>
                         <ScrollView style={{ flexDirection: 'row', padding: 10, height: swiperHeight }} horizontal >
-                            <Image source={{ uri: `${url}${images[0]}` }} style={productImageStyle} />
-                            <Image source={{ uri: `${url}${images[1]}` }} style={productImageStyle} />
+                            <Image source={{ uri: images[0] }} style={productImageStyle} />
+                            <Image source={{ uri: images[0] }} style={productImageStyle} />
+                            <Image source={{ uri: images[0] }} style={productImageStyle} />
+                            <Image source={{ uri: images[1] }} style={productImageStyle} />
                         </ScrollView>
                     </View>
                     <View style={footer}>
@@ -55,16 +78,19 @@ export default class ProductDetail extends Component {
                         <View style={descContainer}>
                             <Text style={descStyle}>{description}</Text>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 15 }}>
-                                <Text style={txtMaterial}>Material {material}</Text>
-                                <View style={{ flexDirection: 'row' }} >
-                                    <Text style={txtColor}>Color {color}</Text>
-                                    <View style={{ height: 15, width: 15, backgroundColor: color.toLowerCase(), borderRadius: 15, marginLeft: 10, borderWidth: 1, borderColor: '#C21C70' }} />
-                                </View>
+                                <Text style={txtMaterial}>Rating {rating}</Text>
+                                <Text style={txtColor}>Release on {release}</Text>
                             </View>
                         </View>
+                        <Text style={{marginLeft: 20}}>Songs</Text>
+                        <FlatList
+                            style={{flex: 1, marginLeft: 20, marginRight: 20, marginBottom: 20}}
+                            keyExtractor={(item, index) => index}
+                            data={songs}
+                            renderItem={({ item, index }) => this.renderItem(item, index)} />
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         );
     }
 }
@@ -77,6 +103,13 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
         backgroundColor: '#D6D6D6',
+    },
+    songItem: {
+        paddingTop: 8,
+        paddingBottom: 8,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        borderRadius: 5
     },
     cardStyle: {
         flex: 1,

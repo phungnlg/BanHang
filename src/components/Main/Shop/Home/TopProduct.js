@@ -76,6 +76,7 @@ const productImageHeight = (produtWidth / 361) * 452;
 
 const styles = StyleSheet.create({
     container: {
+        borderRadius: 5,
         backgroundColor: '#fff',
         margin: 10,
         shadowColor: '#2E272B',
@@ -98,12 +99,14 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     productContainer: {
+        borderRadius: 5,
         width: produtWidth,
         shadowColor: '#2E272B',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2
     },
     productImage: {
+        borderRadius: 5,
         width: produtWidth,
         height: productImageHeight
     },

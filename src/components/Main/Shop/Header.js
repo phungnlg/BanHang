@@ -52,14 +52,15 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
     wrapper: { 
-        height: height / 8, 
+        height: height / 8 + 10,
         backgroundColor: '#34B089', 
         padding: 10, 
         justifyContent: 'space-around' 
     },
     row1: { flexDirection: 'row', justifyContent: 'space-between' },
-    textInput: { 
-        height: height / 23, 
+    textInput: {
+        borderRadius: 5,
+        height: height / 23 + 5,
         backgroundColor: '#FFF', 
         paddingLeft: 10,
         paddingVertical: 0 

@@ -51,6 +51,7 @@ const imageHeight = imageWidth / 2;
 
 const styles = StyleSheet.create({
     wrapper: {
+        borderRadius: 5,
         width: width - 20,
         backgroundColor: '#FFF',
         margin: 10,
