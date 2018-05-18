@@ -62,7 +62,7 @@ class CartView extends Component {
                     dataSource={new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows(cartArray)}
                     renderRow={cartItem => (
                         <View style={productStyle}>
-                            <Image source={{ uri: `${url}${cartItem.product.images[0]}` }} style={productImage} />
+                            <Image source={{ uri: cartItem.product.images[0] }} style={productImage} />
                             <View style={[mainRight]}>
                                 <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
                                     <Text style={txtName}>{toTitleCase(cartItem.product.name)}</Text>

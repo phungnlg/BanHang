@@ -10,6 +10,7 @@ const cart = require('../../../../media/appIcon/cartfull.png');
 const url = 'http://localhost/api/images/product/';
 
 const mockData = {
+    id: 1234,
     images: ['https://img.buzzfeed.com/buzzfeed-static/static/2017-08/23/13/asset/buzzfeed-prod-fastlane-03/sub-buzz-17840-1503509074-9.png?downsize=715:*&output-format=auto&output-quality=auto',
         'https://img.buzzfeed.com/buzzfeed-static/static/2017-08/23/13/asset/buzzfeed-prod-fastlane-03/sub-buzz-17840-1503509074-9.png?downsize=715:*&output-format=auto&output-quality=auto'],
     name: 'reputation',
@@ -31,7 +32,7 @@ export default class ProductDetail extends Component {
     }
     addThisProductToCart() {
         const { product } = this.props;
-        global.addProductToCart(product);
+        global.addProductToCart(mockData);
     }
     renderItem = (item, index) => (
         <View style={[{backgroundColor: index % 2 === 0 ? 'rgba(52, 176, 137, 0.5)' : 'white'}, styles.songItem]}>
