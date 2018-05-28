@@ -37,6 +37,10 @@ export default class TopProduct extends Component {
         const { navigator } = this.props;
         navigator.push({ name: 'PRODUCT_DETAIL', product });
     }
+    gotoListProduct(category) {
+        const { navigator } = this.props;
+        navigator.push({ name: 'LIST_PRODUCT', category });
+    }
     render() {
         const { 
             container, titleContainer, title, 
@@ -47,6 +51,9 @@ export default class TopProduct extends Component {
             <View style={container}>
                 <View style={titleContainer}>
                     <Text style={title}>BEST SELLING</Text>
+                    <TouchableOpacity onPress={() => this.gotoListProduct('category')}>
+                        <Text>View All</Text>
+                    </TouchableOpacity>
                 </View>
                 
                 <ListView 
@@ -84,9 +91,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2
     },
     titleContainer: {
+        flexDirection: 'row',
         height: 50,
-        justifyContent: 'center',
-        paddingLeft: 10
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingLeft: 10,
+        paddingRight: 10
     },
     title: {
         color: '#D3D3CF',
@@ -125,17 +135,3 @@ const styles = StyleSheet.create({
     }
 });
 
-
-// https://github.com/vanpho93/LiveCodeReactNative
-
-/* 
-    <View style={body}>
-        {this.props.topProducts.map(e => (
-                <TouchableOpacity style={productContainer} onPress={() => this.gotoDetail(e)} key={e.id}>
-                <Image source={{ uri: `${url}${e.images[0]}` }} style={productImage} />
-                <Text style={produceName}>{e.name.toUpperCase()}</Text>
-                <Text style={producePrice}>{e.price}$</Text>
-            </TouchableOpacity>
-        ))}
-    </View>
-*/

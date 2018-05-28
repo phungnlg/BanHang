@@ -12,6 +12,8 @@ class HomeView extends Component {
                 <Collection navigator={this.props.navigator} />
                 <Category navigator={this.props.navigator} types={types} />
                 <TopProduct navigator={this.props.navigator} topProducts={topProducts} />
+                <TopProduct navigator={this.props.navigator} topProducts={topProducts} />
+                <TopProduct navigator={this.props.navigator} topProducts={topProducts} />
             </ScrollView>
         );
     }
