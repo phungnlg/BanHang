@@ -14,6 +14,33 @@ function toTitleCase(str) {
     return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 }
 
+const topProducts = [
+    {
+        key: 1,
+        images: ['http://cdn.theeverygirl.com/wp-content/uploads/2015/11/Adele.jpg', 'https://c.slashgear.com/wp-content/uploads/2017/08/taylorswiftreputationalbumcover_biggest.jpg'],
+        name: 'reputation',
+        price: '9.99'
+    },
+    {
+        key: 2,
+        images: ['https://img.buzzfeed.com/buzzfeed-static/static/2017-08/23/13/asset/buzzfeed-prod-fastlane-03/sub-buzz-17840-1503509074-9.png?downsize=715:*&output-format=auto&output-quality=auto', 'https://c.slashgear.com/wp-content/uploads/2017/08/taylorswiftreputationalbumcover_biggest.jpg'],
+        name: 'reputation',
+        price: '9.99'
+    },
+    {
+        key: 3,
+        images: ['https://www.grammy.com/sites/com/files/styles/news_detail_header/public/gettyimages-888636950.jpg?itok=231Z8FgG', 'https://c.slashgear.com/wp-content/uploads/2017/08/taylorswiftreputationalbumcover_biggest.jpg'],
+        name: 'reputation',
+        price: '9.99'
+    },
+    {
+        key: 4,
+        images: ['https://i.ytimg.com/vi/CevxZvSJLk8/maxresdefault.jpg', 'https://c.slashgear.com/wp-content/uploads/2017/08/taylorswiftreputationalbumcover_biggest.jpg'],
+        name: 'reputation',
+        price: '9.99'
+    }
+]
+
 export default class ListProduct extends Component {
     constructor(props) {
         super(props);
@@ -63,19 +90,20 @@ export default class ListProduct extends Component {
                         <Text style={titleStyle}>{category.name}</Text>
                         <View style={{ width: 30 }} />
                     </View>
-                    <ListView 
+                    <ListView
+                        style={{marginBottom: 30}}
                         removeClippedSubviews={false}
-                        dataSource={this.state.listProducts}
+                        dataSource={new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows(topProducts)}
                         renderRow={product => (
                             <View style={productContainer}>
-                                <Image style={productImage} source={{ uri: `${url}${product.images[0]}` }} />
+                                <Image style={productImage} source={{ uri: product.images[0] }} />
                                 <View style={productInfo}>
                                     <Text style={txtName}>{toTitleCase(product.name)}</Text>
                                     <Text style={txtPrice}>{product.price}$</Text>
-                                    <Text style={txtMaterial}>Material {product.material}</Text>
+                                    <Text style={txtMaterial}>Rating</Text>
                                     <View style={lastRowInfo}>
-                                        <Text style={txtColor}>Colo {product.color}</Text>
-                                        <View style={{ backgroundColor: product.color.toLowerCase(), height: 16, width: 16, borderRadius: 8 }} />
+                                        <Text style={txtColor}>Release Date</Text>
+                                        <View style={{ backgroundColor: 'white', height: 16, width: 16, borderRadius: 8 }} />
                                         <TouchableOpacity onPress={() => this.gotoDetail(product)}>
                                             <Text style={txtShowDetail}>SHOW DETAILS</Text>
                                         </TouchableOpacity>
